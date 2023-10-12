@@ -1,20 +1,21 @@
-# class constructor
+# parent class constructor
 class Warrior:
     def __init__(self, name, health, power):
         self.name = name
         self.health = health
         self.power = power
 
-    # greet - an instance method
-    def greet(self):
-        print(f"You are a mighty {self.name}.  You wield the Sword of Destiny and you are here only to win.")
-        
+# child class constructor
+class Hero(Warrior):
+    def __init__(self, name, health, power):
+        super().__init__(name, health, power)
+
     # attack - an instance method
     def attack(self, other):
         other.health -= self.power
         print("You do %d damage to the goblin." % hero.power)
         if goblin.health <= 0:
-            print("The goblin is dead.  Peasants will sing songs of your triumph here today for all of time.")
+            print(f"The {other.name} is dead.")
 
     # do nothing - an instance method
     def nothing(self):
@@ -24,12 +25,21 @@ class Warrior:
     def flee(self):
         print("Goodbye, coward.  You're a crappy hero.")
 
+    # greet - an instance method
+    def greet(self):
+        print(f"You are a mighty {self.name}.\nYou wield the Sword of Destiny and you are here only to win.")
 
+# child class constructor
+class Goblin(Warrior):
+    def __init__(self, name, health,power):
+        super().__init__(name, health, power)
+    
+     
 # instantiate a hero
-hero = Warrior("Hero", 10, 5)
+hero = Hero("Hero", 10, 5)
 
 # instantiate a goblin
-goblin = Warrior("Goblin", 6, 2)
+goblin = Goblin("Goblin", 6, 2)
 
 # call the method greet
 hero.greet()
